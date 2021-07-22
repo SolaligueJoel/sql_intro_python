@@ -56,24 +56,25 @@ if __name__ == '__main__':
     
 
     # print("Bienvenidos a otra clase de Inove con Python")
-    # create_schema()
+    create_schema()
     
 
-    # conn = sqlite3.connect('heart.db')
-    # c = conn.cursor()
+    conn = sqlite3.connect('heart.db')
+    c = conn.cursor()
 
-    # path = os.path.dirname(__file__)
-    # sensor_path = os.path.join(path, 'sensor.csv')
+    path = os.path.dirname(__file__)
+    sensor_path = os.path.join(path, 'sensor.csv')
 
-    # with open(sensor_path) as fi:
-    #     data = csv.DictReader(fi)
+    with open(sensor_path) as fi:
+        data = csv.DictReader(fi)
+        
 
-    #     for row in data:
-    #         pulso = int(row['pulso'])
-    #         if pulso <= 50:
-    #             continue
+        for row in data:
+             pulso = int(row['pulso'])
+             if pulso <= 50:
+                 continue
 
-    #         c.execute("INSERT INTO sensor (pulso) VALUES (?);", [pulso])
+             c.execute("INSERT INTO sensor (pulso) VALUES (?);", [pulso])
 
-    # conn.commit()
-    # conn.close()
+    conn.commit()
+    conn.close()
