@@ -34,25 +34,16 @@ def regiones(data):
     medio = result.mean()
     estandar = result.std()
     
-    #Definiendo listas pulso,indice
-    x1,y1,x2,y2,x3,y3 = [],[],[],[],[],[]
+    #Definiendo listas pulso,indice    
+    x1 = [i for i in range(len(data)) if data[i] <= (medio - estandar)]
+    y1 = [data[i] for i in range(len(data)) if data[i] <= (medio - estandar)]
     
-    for i in range(len(data)):
-        if data[i] <= (medio-estandar):
-            x1.append(i)
-            y1.append(data[i])
+    x2 = [i for i in range(len(data)) if data[i] >= (medio + estandar)]
+    y2 = [data[i] for i in range(len(data)) if data[i] >= (medio + estandar)]
     
-    
-    for i in range(len(data)):
-        if data[i] >= (medio+estandar):
-            x2.append(i)
-            y2.append(data[i])
-    
-    
-    for i in range(len(data)):
-        if data[i] >(medio-estandar)and data[i] <(medio+estandar):
-            y3.append(data[i])
-            x3.append(i)
+    x3 = [i for i in range(len(data)) if data[i] > (medio - estandar) and data[i] < (medio + estandar)]
+    y3 = [data[i] for i in range(len(data)) if data[i] > (medio - estandar) and data[i] < (medio + estandar)]
+        
     
     #Grafico
     fig = plt.figure(figsize=(10,8))
